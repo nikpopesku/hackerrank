@@ -3,7 +3,7 @@
 #include <sstream>
 using namespace std;
 
-vector<int> parseInts(string s)
+vector<int> parseInts(const string& s)
 {
     stringstream ss;
     ss.str(s);
