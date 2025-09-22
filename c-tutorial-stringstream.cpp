@@ -1,10 +1,12 @@
 #include <vector>
 #include <iostream>
+#include <sstream>
 using namespace std;
 
 vector<int> parseInts(string s)
 {
-    stringstream ss(s);
+    stringstream ss;
+    ss.str(s);
     char c = ',';
     int a;
     vector<int> b;
@@ -22,10 +24,10 @@ int main() {
     /* Enter your code here. Read input from STDIN. Print output to STDOUT */
     string s;
     cin >> s;
-    vector a = parseInts(s);
+    const vector a = parseInts(s);
 
-    for (int i = 0; i < a.size(); ++i) {
-        cout >> a[i] >> "\n";
+    for (const int i : a) {
+        cout << i << "\n";
     }
     return 0;
 }
