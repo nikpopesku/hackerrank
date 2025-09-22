@@ -23,7 +23,6 @@ vector<int> parseInts(string s)
 
 int main()
 {
-    /* Enter your code here. Read input from STDIN. Print output to STDOUT */
     string s;
     cin >> s;
     const vector a = parseInts(s);
