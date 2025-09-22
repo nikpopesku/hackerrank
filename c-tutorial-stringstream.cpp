@@ -11,22 +11,25 @@ vector<int> parseInts(string s)
     int a;
     vector<int> b;
 
-    while (c) {
+    do
+    {
         ss >> a;
-        ss >> c;
         b.push_back(a);
     }
+    while (ss >> c);
 
     return b;
 }
 
-int main() {
+int main()
+{
     /* Enter your code here. Read input from STDIN. Print output to STDOUT */
     string s;
     cin >> s;
     const vector a = parseInts(s);
 
-    for (const int i : a) {
+    for (const int i : a)
+    {
         cout << i << "\n";
     }
     return 0;
