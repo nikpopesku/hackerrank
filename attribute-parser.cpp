@@ -1,11 +1,21 @@
 #include <iostream>
 #include <limits>
+#include <sstream>
 
 using namespace std;
 
 string extract(const string& query, const string& s)
 {
-    return query + '2';
+    stringstream ss;
+    ss.str(s);
+    string response;
+
+    do
+    {
+        response = query + '2';
+    } while (1);
+
+    return response;
 }
 
 int main()
