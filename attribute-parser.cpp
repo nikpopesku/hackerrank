@@ -9,11 +9,17 @@ string extract(const string& query, const string& s)
     stringstream ss;
     ss.str(s);
     string response;
+    string tag_name;
+    int result;
 
     do
     {
-        response = query + '2';
-    } while (1);
+        char open_tag_start = '<';
+        if (result = (ss >> open_tag_start >> tag_name).get())
+        {
+            cout << tag_name << "\n";
+        }
+    } while (result);
 
     return response;
 }
