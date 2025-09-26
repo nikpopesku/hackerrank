@@ -51,6 +51,7 @@ public:
 
 class Professor final : public Person {
     int publications = 0;
+    int cur_id = 0;
 
 public:
     void getdata() override {
@@ -58,7 +59,7 @@ public:
     }
 
     void putdata() override {
-        cout << name << " " << age << " " << publications << "\n";
+        cout << name << " " << age << " " << publications << " " << cur_id << "\n";
     }
 };
 
