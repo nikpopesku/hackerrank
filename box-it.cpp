@@ -56,7 +56,7 @@ public:
     }
 
     [[nodiscard]] long long CalculateVolume() const {
-        return l * b * h;
+        return static_cast<long long>(l) * static_cast<long long>(b) * static_cast<long long>(h);
     }
 
     bool operator<(const Box &other) const {
