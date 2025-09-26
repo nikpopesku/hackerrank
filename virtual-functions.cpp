@@ -7,6 +7,8 @@ protected:
     int age = 0;
 
 public:
+    virtual ~Person() = default;
+
     virtual void putdata() {
     }
 
@@ -16,10 +18,19 @@ public:
 
 
 class Student : Person {
-    int marks[1000] = {};
+    int marks[6] = {};
+    int cur_id = 0;
 
+public:
     void getdata() override {
         cin >> name >> age;
+        for (int i = 0; i < 6; i++) {
+            cin >> marks[i];
+        }
+    }
+
+    void putdata() override {
+        cout << cur_id;
     }
 };
 
@@ -27,12 +38,12 @@ class Professor : Person {
     int publications;
 
 public:
-    static int cur_id() {
-        return 5;
-    }
-
     void getdata() override {
         cin >> name >> age >> publications;
+    }
+
+    void putdata() override {
+        cout << name << " " << age << " " << publications;
     }
 };
 
