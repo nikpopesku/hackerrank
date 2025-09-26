@@ -1,4 +1,6 @@
 #include <iostream>
+#include <string>
+#include <vector>
 using namespace std;
 
 class Person {
@@ -9,6 +11,8 @@ protected:
 public:
     virtual ~Person() = default;
 
+    Person() = default;
+
     virtual void putdata() {
     }
 
@@ -17,9 +21,20 @@ public:
 };
 
 
-class Student final : Person {
+
+class Student final : public Person {
     int marks[6] = {};
     int cur_id = 0;
+
+    int calculateSum() {
+        int sum = 0;
+
+        for (const int mark : marks) {
+            sum += mark;
+        }
+
+        return sum;
+    }
 
 public:
     void getdata() override {
@@ -30,11 +45,13 @@ public:
     }
 
     void putdata() override {
-        cout << cur_id;
+        cout << name << " " << age << " " << calculateSum() << " " << cur_id << "\n";
     }
 };
 
-class Professor final : Person {
+
+
+class Professor final : public Person {
     int publications = 0;
 
 public:
@@ -43,7 +60,7 @@ public:
     }
 
     void putdata() override {
-        cout << name << " " << age << " " << publications;
+        cout << name << " " << age << " " << publications << "\n";
     }
 };
 
@@ -51,7 +68,7 @@ public:
 int main() {
     int n, val;
     cin >> n; //The number of objects that is going to be created.
-    Person *per[n];
+    vector<Person*> per(n);
 
     for (int i = 0; i < n; i++) {
         cin >> val;
