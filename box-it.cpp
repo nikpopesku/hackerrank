@@ -37,6 +37,12 @@ public:
         h = height;
     }
 
+    Box(const Box& other) {
+        l = other.l;
+        b = other.b;
+        h = other.h;
+    }
+
     [[nodiscard]] int getLength() const {
         return l;
     }
@@ -47,6 +53,26 @@ public:
 
     [[nodiscard]] int getHeight() const {
         return h;
+    }
+
+    [[nodiscard]] long long calculateVolume() const {
+        return l * b * h;
+    }
+
+    bool operator<(const Box& other) const {
+        if (l < other.l) {
+            return true;
+        }
+
+        if (b < other.b) {
+            return true;
+        }
+
+        if (h < other.h) {
+            return true;
+        }
+
+        return false;
     }
 };
 
