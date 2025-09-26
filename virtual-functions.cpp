@@ -24,8 +24,8 @@ class Student final : Person {
 public:
     void getdata() override {
         cin >> name >> age;
-        for (int i = 0; i < 6; i++) {
-            cin >> marks[i];
+        for (int &mark: marks) {
+            cin >> mark;
         }
     }
 
