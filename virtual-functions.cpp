@@ -1,9 +1,43 @@
-#include <cmath>
-#include <cstdio>
-#include <vector>
 #include <iostream>
-#include <algorithm>
 using namespace std;
+
+class Person {
+    string name;
+    int age = 0;
+
+    virtual void putdata() {
+
+    }
+
+    virtual string getdata() {}
+};
+
+
+class Student: Person {
+    int marks[1000] = {};
+
+    void getdata() override {
+    }
+};
+
+class Professor: Person {
+    int publications[1000];
+
+public:
+    int publications() {
+        return 4;
+    }
+
+    static int cur_id() {
+        return 5;
+    }
+
+    void getdata() {
+
+    }
+};
+
+
 
 int main(){
 
