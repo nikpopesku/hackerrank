@@ -12,12 +12,12 @@ public:
     virtual void putdata() {
     }
 
-    virtual string getdata() {
+    virtual void getdata() {
     }
 };
 
 
-class Student : Person {
+class Student final : Person {
     int marks[6] = {};
     int cur_id = 0;
 
@@ -34,8 +34,8 @@ public:
     }
 };
 
-class Professor : Person {
-    int publications;
+class Professor final : Person {
+    int publications = 0;
 
 public:
     void getdata() override {
