@@ -23,7 +23,8 @@ public:
 
 class Student final : public Person {
     int marks[6] = {};
-    int cur_id = 0;
+    static int cur_id;
+    int id = 0;
 
     int calculateSum() {
         int sum = 0;
@@ -36,6 +37,10 @@ class Student final : public Person {
     }
 
 public:
+    Student() {
+        id = ++cur_id;
+    }
+
     void getdata() override {
         cin >> name >> age;
         for (int &mark: marks) {
@@ -44,22 +49,27 @@ public:
     }
 
     void putdata() override {
-        cout << name << " " << age << " " << calculateSum() << " " << cur_id << "\n";
+        cout << name << " " << age << " " << calculateSum() << " " << id << "\n";
     }
 };
 
 
 class Professor final : public Person {
     int publications = 0;
-    int cur_id = 0;
+    static int cur_id;
+    int id = 0;
 
 public:
+    Professor() {
+        id = ++cur_id;
+    }
+
     void getdata() override {
         cin >> name >> age >> publications;
     }
 
     void putdata() override {
-        cout << name << " " << age << " " << publications << " " << cur_id << "\n";
+        cout << name << " " << age << " " << publications << " " << id << "\n";
     }
 };
 
@@ -84,3 +94,7 @@ int main() {
 
     return 0;
 }
+
+
+int Student::cur_id = 0;
+int Professor::cur_id = 0;
