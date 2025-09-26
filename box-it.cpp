@@ -64,8 +64,16 @@ public:
             return true;
         }
 
+        if (l > other.l) {
+            return false;
+        }
+
         if (b < other.b) {
             return true;
+        }
+
+        if (b > other.b) {
+            return false;
         }
 
         if (h < other.h) {
