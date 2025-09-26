@@ -37,7 +37,7 @@ public:
         h = height;
     }
 
-    Box(const Box& other) {
+    Box(const Box &other) {
         l = other.l;
         b = other.b;
         h = other.h;
@@ -55,11 +55,11 @@ public:
         return h;
     }
 
-    [[nodiscard]] long long calculateVolume() const {
+    [[nodiscard]] long long CalculateVolume() const {
         return l * b * h;
     }
 
-    bool operator<(const Box& other) const {
+    bool operator<(const Box &other) const {
         if (l < other.l) {
             return true;
         }
@@ -75,6 +75,13 @@ public:
         return false;
     }
 };
+
+
+ostream &operator<<(std::ostream &os, const Box &b) {
+    os << b.getLength() << " " << b.getBreadth() << " " << b.getHeight();
+
+    return os;
+}
 
 void check2() {
     int n;
