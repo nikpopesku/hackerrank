@@ -21,7 +21,6 @@ public:
 };
 
 
-
 class Student final : public Person {
     int marks[6] = {};
     int cur_id = 0;
@@ -29,7 +28,7 @@ class Student final : public Person {
     int calculateSum() {
         int sum = 0;
 
-        for (const int mark : marks) {
+        for (const int mark: marks) {
             sum += mark;
         }
 
@@ -50,7 +49,6 @@ public:
 };
 
 
-
 class Professor final : public Person {
     int publications = 0;
 
@@ -68,7 +66,7 @@ public:
 int main() {
     int n, val;
     cin >> n; //The number of objects that is going to be created.
-    vector<Person*> per(n);
+    vector<Person *> per(n);
 
     for (int i = 0; i < n; i++) {
         cin >> val;
