@@ -39,21 +39,27 @@ int main()
     {
         long long A, B;
         cin >> A >> B;
+
+        try
+        {
+            cout << Server::compute(A, B) << "\n";
+        }
+        catch (const std::bad_alloc& e)
+        {
+            cout << "Not enough memory\n";
+        }
+        catch (std::exception& e)
+        {
+            cout << "Exception: " << e.what() << "\n";
+        }
+        catch (...)
+        {
+            cout << "Other Exception\n";
+        }
     }
-    try
-    {
-        cout << Server::getLoad() << "\n";
-    }
-    catch (const std::bad_alloc&)
-    {
-        cout << "Not enough memory\n";
-    } catch (std::exception& e)
-    {
-        cout << "Exception: " << e.what();
-    } catch (...)
-    {
-        cout << "Other Exception\n";
-    }
+
+    cout << Server::getLoad() << endl;
+
 
     return 0;
 }
