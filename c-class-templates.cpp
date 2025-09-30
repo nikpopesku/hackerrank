@@ -1,4 +1,5 @@
 #include <iostream>
+#include <string>
 #include <utility>
 using namespace std;
 
@@ -36,6 +37,9 @@ public:
 
 int main()
 {
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+
     int n;
     cin >> n;
     for (int i = 0; i < n; i++)
@@ -46,22 +50,22 @@ int main()
         {
             double element1, element2;
             cin >> element1 >> element2;
-            AddElements myfloat(element1);
-            cout << myfloat.add(element2) << endl;
+            AddElements<double> myfloat(element1);
+            cout << myfloat.add(element2) << '\n';
         }
         else if (type == "int")
         {
             int element1, element2;
             cin >> element1 >> element2;
-            AddElements myint(element1);
-            cout << myint.add(element2) << endl;
+            AddElements<int> myint(element1);
+            cout << myint.add(element2) << '\n';
         }
         else if (type == "string")
         {
             string element1, element2;
             cin >> element1 >> element2;
-            AddElements mystring(element1);
-            cout << mystring.concatenate(element2) << endl;
+            AddElements<string> mystring(element1);
+            cout << mystring.concatenate(element2) << '\n';
         }
     }
     return 0;
