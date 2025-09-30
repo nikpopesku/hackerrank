@@ -27,7 +27,8 @@ public:
     }
 };
 
-int main() {
+int main()
+{
     RectangleArea r_area;
 
     r_area.read_input();
