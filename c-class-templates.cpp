@@ -1,4 +1,5 @@
 #include <iostream>
+#include <utility>
 using namespace std;
 
 template <class T>
@@ -23,11 +24,11 @@ class AddElements<string>
     string element;
 
 public:
-    explicit AddElements(const string& e) : element(e)
+    explicit AddElements(string  e) : element(std::move(e))
     {
     }
 
-    string concatenate(const string& other) const
+    [[nodiscard]] string concatenate(const string& other) const
     {
         return element + other;
     }
