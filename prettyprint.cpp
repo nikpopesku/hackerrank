@@ -14,7 +14,7 @@ string to_hex(int num)
     int dozen = 1;
     int current = num / dozen;
 
-    while (current < 16)
+    while (current >= 16)
     {
         ++degree;
         dozen *= 16;
@@ -35,15 +35,6 @@ string to_hex(int num)
         --degree;
         num %= dozen;
         dozen /= 16;
-    }
-
-    if (num > 9)
-    {
-        response += static_cast<char>(static_cast<int>('A') + num - 10);
-    }
-    else
-    {
-        response += static_cast<char>(static_cast<int>('0') + num);
     }
 
     return response;
