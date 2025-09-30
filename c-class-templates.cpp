@@ -7,9 +7,29 @@ class AddElements
     T element;
 
 public:
+    explicit AddElements(T e) : element(e)
+    {
+    }
+
     T add(T another)
     {
         return element + another;
+    }
+};
+
+template <>
+class AddElements<string>
+{
+    string element;
+
+public:
+    explicit AddElements(const string& e) : element(e)
+    {
+    }
+
+    string concatenate(const string& other) const
+    {
+        return element + other;
     }
 };
 
@@ -25,21 +45,21 @@ int main()
         {
             double element1, element2;
             cin >> element1 >> element2;
-            AddElements<double> myfloat(element1);
+            AddElements myfloat(element1);
             cout << myfloat.add(element2) << endl;
         }
         else if (type == "int")
         {
             int element1, element2;
             cin >> element1 >> element2;
-            AddElements<int> myint(element1);
+            AddElements myint(element1);
             cout << myint.add(element2) << endl;
         }
         else if (type == "string")
         {
             string element1, element2;
             cin >> element1 >> element2;
-            AddElements<string> mystring(element1);
+            AddElements mystring(element1);
             cout << mystring.concatenate(element2) << endl;
         }
     }
