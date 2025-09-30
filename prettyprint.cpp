@@ -27,7 +27,7 @@ string to_hex(int num)
     {
         if (const int value = num / dozen; value > 9)
         {
-            response += static_cast<char>(static_cast<int>('A') + value - 10);
+            response += static_cast<char>(static_cast<int>('a') + value - 10);
         }
         else
         {
