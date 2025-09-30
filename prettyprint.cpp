@@ -4,7 +4,7 @@
 
 using namespace std;
 
-string to_hex(int num)
+string to_hex(long long num)
 {
     if (num == 0)
     {
@@ -12,9 +12,9 @@ string to_hex(int num)
     }
 
     string response = "0x";
-    int degree = 0;
-    int dozen = 1;
-    int current = num / dozen;
+    long long degree = 0;
+    long long dozen = 1;
+    long long current = num / dozen;
 
     while (current >= 16)
     {
@@ -25,7 +25,7 @@ string to_hex(int num)
 
     while (degree >= 0)
     {
-        if (const int value = num / dozen; value > 9)
+        if (const long long value = num / dozen; value > 9)
         {
             response += static_cast<char>(static_cast<int>('a') + value - 10);
         }
@@ -74,7 +74,7 @@ void solve()
     double A, B, C;
     cin >> A >> B >> C;
 
-    cout << to_hex(static_cast<int>(A)) << "\n";
+    cout << to_hex(static_cast<long long>(A)) << "\n";
     cout << to_val(B) << "\n";
     cout << setprecision(9) << scientific << uppercase << C << "\n";
 }
