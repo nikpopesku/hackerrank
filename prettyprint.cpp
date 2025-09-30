@@ -1,4 +1,4 @@
-#include <complex>
+#include <iomanip>
 #include <iostream>
 using namespace std;
 
@@ -47,7 +47,7 @@ void solve()
 
     cout << to_hex(static_cast<int>(A)) << "\n";
     cout << to_hex(static_cast<int>(B)) << "\n";
-    cout << to_hex(static_cast<int>(C)) << "\n";
+    cout << setprecision(9) << scientific << uppercase << C << "\n";
 }
 
 int main()
