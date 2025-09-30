@@ -1,5 +1,7 @@
 #include <iomanip>
 #include <iostream>
+#include <cmath>
+
 using namespace std;
 
 string to_hex(int num)
@@ -40,13 +42,40 @@ string to_hex(int num)
     return response;
 }
 
+string to_val(const double num)
+{
+    string response;
+
+    if (num > 0)
+    {
+        response += "+";
+    }
+    else
+    {
+        response += "-";
+    }
+
+    std::ostringstream oss;
+    oss << std::fixed << std::setprecision(2) << num;
+
+    response += oss.str();
+    string underscore;
+
+    for (int i = 0; i < 15 - response.size(); ++i)
+    {
+        underscore += '_';
+    }
+
+    return underscore + response;
+}
+
 void solve()
 {
     double A, B, C;
     cin >> A >> B >> C;
 
     cout << to_hex(static_cast<int>(A)) << "\n";
-    cout << to_hex(static_cast<int>(B)) << "\n";
+    cout << to_val(B) << "\n";
     cout << setprecision(9) << scientific << uppercase << C << "\n";
 }
 
