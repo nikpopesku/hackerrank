@@ -6,9 +6,8 @@ using namespace std;
 #define foreach(v, i) for(int i = 0; i < v.size(); ++i)
 #define io(v) cin >> v
 #define INF 1e8
-#define minimum(a, b) a = a < b ? a : b
-#define maximum(a, b) a = a > b ? a : b
 #define toStr(str) #str
+#define FUNCTION(name, op) inline void name(int& a, int b) { a = a op b ? a : b; }
 #endif
 
 FUNCTION(minimum, <)
