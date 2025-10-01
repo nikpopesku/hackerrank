@@ -1,5 +1,7 @@
 #include <iosfwd>
+#include <iostream>
 #include <ostream>
+
 using namespace std;
 
 
@@ -18,16 +20,18 @@ public:
 };
 
 
-ostream& operator<<(const ostream& out, Complex c)
+ostream& operator<<(const ostream& out, const Complex c)
 {
-    out << c.a << "+i" << c.b;
+    out << c.a << "+i" << c.b << "\n";
 
-    return &out;
+    return out;
 }
 
 int main()
 {
     Complex c;
+
+    cout << c;
 
     return 0;
 }
