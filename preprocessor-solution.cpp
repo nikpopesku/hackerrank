@@ -8,11 +8,11 @@ using namespace std;
 #define INF 1e8
 #define minimum(a, b) a = a < b ? a : b
 #define maximum(a, b) a = a > b ? a : b
-#define toStr(a =) to_string(a) + " ="
+#define toStr(str) #str
 #endif
 
-// FUNCTION(minimum, <)
-// FUNCTION(maximum, >)
+FUNCTION(minimum, <)
+FUNCTION(maximum, >)
 
 int main()
 {
