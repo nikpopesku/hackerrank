@@ -1,13 +1,19 @@
 #include <iostream>
 #include <ostream>
+#include <string>
 
 using namespace std;
 
 
 class Complex
 {
-public:
     int a = 0, b = 0;
+
+public:
+    Complex() = default;
+    Complex(const int a, const int b) : a(a), b(b)
+    {
+    }
 
     Complex& operator+(const Complex& other)
     {
@@ -21,32 +27,31 @@ public:
 
 ostream& operator<<(ostream& out, const Complex c)
 {
-    out << c.a << "+i" << c.b << "\n";
+    out << c.a << "+i" << c.b;
 
     return out;
 }
 
 int main()
 {
-    Complex c, b;
+    Complex c;
 
     while (true)
     {
-        int img;
-        int real;
-        getline(cin, real, "+i");
-        if (!real)
+        string img;
+        string real;
+        getline(cin, real);
+        if (real == "")
         {
             break;
         }
 
         getline(cin, img);
-        b.a = real;
-        b.b = img;
+        Complex b(stoi(real), stoi(img));
         c = c + b;
     }
 
-    cout << c;
+    cout << c << endl;
 
     return 0;
 }
