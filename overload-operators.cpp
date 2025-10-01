@@ -19,15 +19,7 @@ public:
 };
 
 
-ostream operator<<(const ostream& out, Complex c)
-{
-    out << c.a << "+i" << c.b << "\n";
-
-    return out;
-}
-
-
-ostream& operator<<(const ostream& out, const Complex c)
+ostream &operator<<(ostream& out, const Complex c)
 {
     out << c.a << "+i" << c.b << "\n";
 
