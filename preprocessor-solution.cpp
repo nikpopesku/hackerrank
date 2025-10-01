@@ -4,15 +4,15 @@ using namespace std;
 
 #if !defined toStr || !defined io || !defined FUNCTION || !defined INF
 #define foreach(v, i) for(int i = 0; i < v.size(); ++i)
-#define io(v)[i]; cin >> v[i];
+#define io(v)[i] cin >> v[i]
 #define INF 1e8
-#define minimum(mn, v[i]); mn = mn < v[i] ? mn : v[i];
-#define maximum(mn, v[i]); mn = mn > v[i] ? mn : v[i];
-#define toStr(Result =) "Result = "
+#define minimum(a, b) a = a < b ? a : b
+#define maximum(a, b) a = a > b ? a : b
+#define toStr(a) to_string(a)
 #endif
 
-FUNCTION(minimum, <)
-FUNCTION(maximum, >)
+// FUNCTION(minimum, <)
+// FUNCTION(maximum, >)
 
 int main()
 {
