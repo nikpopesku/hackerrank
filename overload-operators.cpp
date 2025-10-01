@@ -1,4 +1,3 @@
-#include <iosfwd>
 #include <iostream>
 #include <ostream>
 
@@ -10,7 +9,7 @@ class Complex
 public:
     int a = 0, b = 0;
 
-    Complex operator+(const Complex& other)
+    Complex& operator+(const Complex& other)
     {
         a += other.a;
         b += other.b;
@@ -18,6 +17,14 @@ public:
         return *this;
     }
 };
+
+
+ostream operator<<(const ostream& out, Complex c)
+{
+    out << c.a << "+i" << c.b << "\n";
+
+    return out;
+}
 
 
 ostream& operator<<(const ostream& out, const Complex c)
@@ -29,7 +36,22 @@ ostream& operator<<(const ostream& out, const Complex c)
 
 int main()
 {
-    Complex c;
+    Complex c, b;
+    int real, img;
+
+    while (true)
+    {
+        getline(cin, real, "+i");
+        if (!real)
+        {
+            break;
+        }
+
+        getline(cin, img);
+        b.a = real;
+        b.b = img;
+        c += b;
+    }
 
     cout << c;
 
