@@ -29,10 +29,11 @@ ostream& operator<<(ostream& out, const Complex c)
 int main()
 {
     Complex c, b;
-    int real, img;
 
     while (true)
     {
+        int img;
+        int real;
         getline(cin, real, "+i");
         if (!real)
         {
@@ -42,7 +43,7 @@ int main()
         getline(cin, img);
         b.a = real;
         b.b = img;
-        c += b;
+        c = c + b;
     }
 
     cout << c;
