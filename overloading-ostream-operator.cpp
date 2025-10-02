@@ -1,20 +1,21 @@
 #include <iostream>
+#include <utility>
 
 using namespace std;
 
 class Person
 {
 public:
-    Person(const string& first_name, const string& last_name) : first_name_(first_name), last_name_(last_name)
+    Person(string  first_name, string  last_name) : first_name_(std::move(first_name)), last_name_(std::move(last_name))
     {
     }
 
-    const string& get_first_name() const
+    [[nodiscard]] const string& get_first_name() const
     {
         return first_name_;
     }
 
-    const string& get_last_name() const
+    [[nodiscard]] const string& get_last_name() const
     {
         return last_name_;
     }
