@@ -1,5 +1,7 @@
 #include <iostream>
 #include <algorithm>
+#include <random>
+#include <utility>
 #include <vector>
 
 using namespace std;
@@ -15,7 +17,7 @@ public:
     {
     }
 
-    explicit Message(const string& text) : text_(text), order_(++counter_order_)
+    explicit Message(string  text) : text_(std::move(text)), order_(++counter_order_)
     {
     }
 
@@ -33,9 +35,7 @@ public:
 class MessageFactory
 {
 public:
-    MessageFactory()
-    {
-    }
+    MessageFactory() = default;
 
     Message create_message(const string& text)
     {
@@ -48,9 +48,7 @@ public:
 class Recipient
 {
 public:
-    Recipient()
-    {
-    }
+    Recipient() = default;
 
     void receive(const Message& msg)
     {
@@ -82,8 +80,8 @@ public:
     static void send_messages(vector<Message> messages, Recipient& recipient)
     {
         // simulates the unpredictable network, where sent messages might arrive in unspecified order
-        random_shuffle(messages.begin(), messages.end());
-        for (auto msg : messages)
+        ranges::shuffle(messages, std::mt19937(std::random_device()()));
+        for (const auto& msg : messages)
         {
             recipient.receive(msg);
         }
