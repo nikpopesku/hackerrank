@@ -3,7 +3,7 @@
 
 using namespace std;
 
-int largest_proper_divisor(int n)
+int largest_proper_divisor(const int n)
 {
     if (n == 0)
     {
@@ -23,7 +23,7 @@ int largest_proper_divisor(int n)
     return -1; // will never happen
 }
 
-void process_input(int n)
+void process_input(const int n)
 {
     const int d = largest_proper_divisor(n);
     cout << "result=" << d << endl;
