@@ -24,14 +24,13 @@ private:
 class HotelApartment : public HotelRoom
 {
 public:
-    HotelApartment(const int bedrooms, const int bathrooms): bed
+    HotelApartment(const int bedrooms, const int bathrooms)
         : HotelRoom(bedrooms, bathrooms)
     {
     }
 
     [[nodiscard]] int get_price() const
     {
-        int xxxx = HotelRoom::get_price();
         return HotelRoom::get_price() + 100;
     }
 };
