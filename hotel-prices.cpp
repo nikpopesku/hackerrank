@@ -6,12 +6,14 @@ using namespace std;
 class HotelRoom
 {
 public:
+    virtual ~HotelRoom() = default;
+
     HotelRoom(const int bedrooms, const int bathrooms)
         : bedrooms_(bedrooms), bathrooms_(bathrooms)
     {
     }
 
-    [[nodiscard]] int get_price() const
+    [[nodiscard]] virtual int get_price() const
     {
         return 50 * bedrooms_ + 100 * bathrooms_;
     }
@@ -29,7 +31,7 @@ public:
     {
     }
 
-    [[nodiscard]] int get_price() const
+    [[nodiscard]] int get_price() const override
     {
         return HotelRoom::get_price() + 100;
     }
