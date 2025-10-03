@@ -25,8 +25,17 @@ int largest_proper_divisor(const int n)
 
 void process_input(const int n)
 {
-    const int d = largest_proper_divisor(n);
-    cout << "result=" << d << endl;
+    try
+    {
+        const int d = largest_proper_divisor(n);
+        cout << "result=" << d << "\n";
+    }
+    catch (invalid_argument& e)
+    {
+        cout << e.what() << "\n";
+    }
+
+    cout << "returning control flow to caller\n";
 }
 
 
