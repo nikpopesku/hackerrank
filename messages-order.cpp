@@ -17,7 +17,7 @@ public:
     {
     }
 
-    explicit Message(string  text) : text_(std::move(text)), order_(++counter_order_)
+    explicit Message(string text) : text_(std::move(text)), order_(++counter_order_)
     {
     }
 
@@ -37,7 +37,7 @@ class MessageFactory
 public:
     MessageFactory() = default;
 
-    Message create_message(const string& text)
+    static Message create_message(const string& text)
     {
         Message m(text);
 
@@ -98,6 +98,10 @@ int main()
     string text;
     while (getline(cin, text))
     {
+        if (text.empty())
+        {
+            break;
+        }
         messages.push_back(message_factory.create_message(text));
     }
     Network::send_messages(messages, recipient);
