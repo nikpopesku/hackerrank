@@ -27,7 +27,7 @@ struct Available_Workshops
 
     // Available_Workshops() = default;
 
-    explicit Available_Workshops(const int n): n(n)
+    explicit Available_Workshops(const int n) : n(n)
     {
         w = new Workshop[n];
     }
