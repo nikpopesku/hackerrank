@@ -26,7 +26,7 @@ protected:
     }
 
 public:
-    int getA()
+    int getA() const
     {
         return callA;
     }
@@ -56,7 +56,7 @@ protected:
     }
 
 public:
-    int getB()
+    int getB() const
     {
         return callB;
     }
@@ -86,34 +86,14 @@ protected:
     }
 
 public:
-    int getC()
+    int getC() const
     {
         return callC;
     }
 };
 
 
-// A a;
-// B b;
-// C c;
-//
-// int getA()
-// {
-//     return a.getA();
-// }
-//
-// int getB()
-// {
-//     return b.getB();
-// }
-//
-// int getC()
-// {
-//     return c.getC();
-// }
-
-
-class D: A, B, C
+class D : A, B, C
 {
     int val;
 
