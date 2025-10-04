@@ -25,8 +25,6 @@ struct Available_Workshops
     // Workshop w[n];
     Workshop* w;
 
-    // Available_Workshops() = default;
-
     explicit Available_Workshops(const int n) : n(n)
     {
         w = new Workshop[n];
@@ -34,7 +32,7 @@ struct Available_Workshops
 };
 
 
-Available_Workshops* initialize(int start_time[], int duration[], int n)
+Available_Workshops* initialize(int start_time[], int duration[], const int n)
 {
     Available_Workshops aw(n);
 
@@ -56,8 +54,8 @@ int main(int argc, char* argv[])
     int n; // number of workshops
     cin >> n;
     // create arrays of unknown size n
-    int* start_time = new int[n];
-    int* duration = new int[n];
+    const auto start_time = new int[n];
+    const auto duration = new int[n];
 
     for (int i = 0; i < n; i++)
     {
@@ -71,5 +69,9 @@ int main(int argc, char* argv[])
     Available_Workshops* ptr;
     ptr = initialize(start_time, duration, n);
     cout << CalculateMaxWorkshops(ptr) << endl;
+
+    delete[] start_time;
+    delete[] duration;
+
     return 0;
 }
