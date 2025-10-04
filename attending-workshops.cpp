@@ -46,22 +46,28 @@ Available_Workshops* initialize(int start_time[], int duration[], const int n)
 
 int CalculateMaxWorkshops(const Available_Workshops* ptr)
 {
-    // Sort by end_time ascending to apply greedy selection
-    sort(ptr->w, ptr->w + ptr->n, [](const Workshop& a, const Workshop& b) {
-        if (a.end_time == b.end_time) return a.start_time < b.start_time;
+    sort(ptr->w, ptr->w + ptr->n, [](const Workshop& a, const Workshop& b)
+    {
+        if (a.end_time == b.end_time)
+        {
+            return a.start_time < b.start_time;
+        }
+
         return a.end_time < b.end_time;
     });
 
     int count = 0;
-    int last_end = -1;
+    int end_time = -1;
+
     for (int i = 0; i < ptr->n; ++i)
     {
-        if (ptr->w[i].start_time >= last_end)
+        if (ptr->w[i].start_time > end_time)
         {
             ++count;
-            last_end = ptr->w[i].end_time;
+            end_time = ptr->w[i].end_time;
         }
     }
+
     return count;
 }
 
