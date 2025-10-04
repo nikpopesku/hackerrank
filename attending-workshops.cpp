@@ -34,22 +34,38 @@ struct Available_Workshops
 
 Available_Workshops* initialize(int start_time[], int duration[], const int n)
 {
-    Available_Workshops aw(n);
+    auto* aw = new Available_Workshops(n);
 
     for (int i = 0; i < n; ++i)
     {
-        aw.w[i] = Workshop(start_time[i], duration[i], start_time[i] + duration[i]);
+        aw->w[i] = Workshop(start_time[i], duration[i], start_time[i] + duration[i]);
     }
 
-
-    return &aw;
+    return aw;
 }
 
-int CalculateMaxWorkshops(Available_Workshops* ptr)
+int CalculateMaxWorkshops(const Available_Workshops* ptr)
 {
-};
+    // Sort by end_time ascending to apply greedy selection
+    sort(ptr->w, ptr->w + ptr->n, [](const Workshop& a, const Workshop& b) {
+        if (a.end_time == b.end_time) return a.start_time < b.start_time;
+        return a.end_time < b.end_time;
+    });
 
-int main(int argc, char* argv[])
+    int count = 0;
+    int last_end = -1;
+    for (int i = 0; i < ptr->n; ++i)
+    {
+        if (ptr->w[i].start_time >= last_end)
+        {
+            ++count;
+            last_end = ptr->w[i].end_time;
+        }
+    }
+    return count;
+}
+
+int main()
 {
     int n; // number of workshops
     cin >> n;
@@ -66,12 +82,12 @@ int main(int argc, char* argv[])
         cin >> duration[i];
     }
 
-    Available_Workshops* ptr;
-    ptr = initialize(start_time, duration, n);
+    const Available_Workshops* ptr = initialize(start_time, duration, n);
     cout << CalculateMaxWorkshops(ptr) << endl;
 
     delete[] start_time;
     delete[] duration;
+    delete ptr;
 
     return 0;
 }
