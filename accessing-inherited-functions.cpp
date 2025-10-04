@@ -26,7 +26,7 @@ protected:
     }
 
 public:
-    int getA() const
+    [[nodiscard]] int getA() const
     {
         return callA;
     }
@@ -56,7 +56,7 @@ protected:
     }
 
 public:
-    int getB() const
+    [[nodiscard]] int getB() const
     {
         return callB;
     }
@@ -86,7 +86,7 @@ protected:
     }
 
 public:
-    int getC() const
+    [[nodiscard]] int getC() const
     {
         return callC;
     }
