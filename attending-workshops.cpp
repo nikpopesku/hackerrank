@@ -10,6 +10,11 @@ struct Workshop
     int start_time;
     int duration;
     int end_time;
+
+    Workshop(const int start_time, const int duration, const int end_time) : start_time(start_time), duration(duration),
+                                                                             end_time(end_time)
+    {
+    }
 };
 
 struct Available_Workshops
@@ -22,6 +27,10 @@ struct Available_Workshops
 
 Available_Workshops* initialize(int start_time[], int duration[], int n)
 {
+    for (int i = 0; i < n; ++i)
+    {
+        (*w)[i] = Workshop(start_time[i], duration[i], start_time[i] + duration[i]);
+    }
 }
 
 int CalculateMaxWorkshops(Available_Workshops* ptr)
