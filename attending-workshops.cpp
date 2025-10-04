@@ -11,6 +11,8 @@ struct Workshop
     int duration;
     int end_time;
 
+    Workshop() = default;
+
     Workshop(const int start_time, const int duration, const int end_time) : start_time(start_time), duration(duration),
                                                                              end_time(end_time)
     {
@@ -21,16 +23,28 @@ struct Available_Workshops
 {
     int n;
     // Workshop w[n];
-    Workshop* w = new Workshop[n];
+    Workshop* w;
+
+    // Available_Workshops() = default;
+
+    explicit Available_Workshops(const int n): n(n)
+    {
+        w = new Workshop[n];
+    }
 };
 
 
 Available_Workshops* initialize(int start_time[], int duration[], int n)
 {
+    Available_Workshops aw(n);
+
     for (int i = 0; i < n; ++i)
     {
-        (*w)[i] = Workshop(start_time[i], duration[i], start_time[i] + duration[i]);
+        aw.w[i] = Workshop(start_time[i], duration[i], start_time[i] + duration[i]);
     }
+
+
+    return &aw;
 }
 
 int CalculateMaxWorkshops(Available_Workshops* ptr)
