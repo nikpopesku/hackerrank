@@ -61,7 +61,7 @@ int CalculateMaxWorkshops(const Available_Workshops* ptr)
 
     for (int i = 0; i < ptr->n; ++i)
     {
-        if (ptr->w[i].start_time > end_time)
+        if (ptr->w[i].start_time >= end_time)
         {
             ++count;
             end_time = ptr->w[i].end_time;
