@@ -126,23 +126,43 @@ public:
 
 
     //Implement this function
-    void update_val(int new_val)
+    void update_val(const int new_val)
     {
         while (val < new_val)
         {
-            if (val * 2 <= new_val)
+            if (mcp(val * 2, new_val) <= new_val)
             {
                 A::func(val);
             }
-            if (val * 3 <= new_val)
+            if (mcp(val * 3, new_val) <= new_val)
             {
                 B::func(val);
             }
-            if (val * 5 <= new_val)
+            if (mcp(val * 5, new_val) <= new_val)
             {
                 C::func(val);
             }
         }
+    }
+
+    static int gcd(int a, int b)
+    {
+        if (b > a)
+        {
+            swap(a, b);
+        }
+
+        if (a == b)
+        {
+            return a;
+        }
+
+        return gcd(a - b, b);
+    }
+
+    static int mcp(const int a, const int b)
+    {
+        return a * b / gcd(a, b);
     }
 
     //For Checking Purpose
