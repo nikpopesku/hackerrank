@@ -4,9 +4,31 @@ enum class Fruit { apple, orange, pear };
 enum class Color { red, green, orange };
 
 template <typename T>
-struct Traits {
-    string static name(int index) {
+struct Traits;
 
+// Specialization for Fruit
+template <>
+struct Traits<Fruit> {
+    static string name(const int index) {
+        switch(index) {
+            case 0: return "apple";
+            case 1: return "orange";
+            case 2: return "pear";
+            default: return "unknown";
+        }
+    }
+};
+
+// Specialization for Color
+template <>
+struct Traits<Color> {
+    static string name(const int index) {
+        switch(index) {
+            case 0: return "red";
+            case 1: return "green";
+            case 2: return "orange";
+            default: return "unknown";
+        }
     }
 };
 
