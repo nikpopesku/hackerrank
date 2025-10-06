@@ -1,47 +1,81 @@
 #include <iostream>
-#include <limits>
+#include <string>
+#include <map>
+#include <vector>
 #include <sstream>
 
 using namespace std;
 
-string extract(const string& query, const string& s)
-{
-    stringstream ss;
-    ss.str(s);
-    string response;
-    string tag_name;
-    int result;
-
-    do
-    {
-        char open_tag_start = '<';
-        if (result = (ss >> open_tag_start >> tag_name).get())
-        {
-            cout << tag_name << "\n";
-        }
-    } while (result);
-
-    return response;
-}
-
 int main()
 {
     int N, Q;
-    string s, current, query;
-
     cin >> N >> Q;
-    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+    cin.ignore();
+
+    map<string, string> attributes;
+    vector<string> tagStack;
+
+    // Parse HRML
     for (int i = 0; i < N; ++i)
     {
-        getline(std::cin, current);
-        s += current;
+        string line;
+        getline(cin, line);
+
+        stringstream ss(line);
+        string token;
+        ss >> token;
+
+        if (token[1] == '/')
+        {
+            // Closing tag
+            if (!tagStack.empty())
+                tagStack.pop_back();
+        }
+        else
+        {
+            // Opening tag
+            string tagName = token.substr(1); // Remove '<'
+
+            // Build current tag path
+            string currentPath;
+            for (const auto& tag : tagStack)
+            {
+                currentPath += tag + ".";
+            }
+            currentPath += tagName;
+            tagStack.push_back(tagName);
+
+            // Parse attributes
+            string attrName, equals, attrValue;
+            while (ss >> attrName >> equals >> attrValue)
+            {
+                // Remove quotes from value
+                attrValue = attrValue.substr(1, attrValue.length() - 2);
+
+                // Remove trailing '>' if present
+                if (attrValue.back() == '>')
+                    attrValue.pop_back();
+
+                string key = currentPath + "~" + attrName;
+                attributes[key] = attrValue;
+            }
+        }
     }
 
+    // Answer queries
     for (int i = 0; i < Q; ++i)
     {
+        string query;
         cin >> query;
 
-        cout << extract(query, s) << "\n";
+        if (attributes.find(query) != attributes.end())
+        {
+            cout << attributes[query] << "\n";
+        }
+        else
+        {
+            cout << "Not Found!\n";
+        }
     }
 
     return 0;
