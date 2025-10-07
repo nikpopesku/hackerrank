@@ -45,8 +45,10 @@ int main() {
                 attrValue = attrValue.substr(1, attrValue.length() - 3);
 
                 // Remove trailing '>' if present
-                if (attrValue.back() == '>')
+                if (attrValue.back() == '>') {
                     attrValue.pop_back();
+                }
+
 
                 string key = currentPath + "~" + attrName;
                 attributes[key] = attrValue;
