@@ -30,6 +30,10 @@ int main() {
 
             token = token.substr(1);
 
+            if (token[token.size() - 1] == '>') {
+                token = token.substr(0, token.size() - 1);
+            }
+
             for (auto t: tokens) {
                 currentPath += t + ".";
             }
