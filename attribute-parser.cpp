@@ -41,7 +41,10 @@ int main() {
 
             while (ss >> attrName >> equal >> value) {
                 if (attrName.data()) {
-                    attributes[currentPath + "~" + attrName] = value.substr(1, value.size() - 3);
+                    if (value[value.size() - 1] == '>') {
+                        value = value.substr(0, value.size() - 1);
+                    }
+                    attributes[currentPath + "~" + attrName] = value.substr(1, value.size() - 2);
                 }
             }
         }
