@@ -35,7 +35,7 @@ int main() {
             }
             currentPath += token;
 
-            tokens.push_back(currentPath);
+            tokens.push_back(token);
 
             string attrName, equal, value;
 
