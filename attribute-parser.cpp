@@ -27,9 +27,9 @@ int main()
 
         if (token[1] == '/')
         {
-            // Closing tag
-            if (!tagStack.empty())
+            if (!tagStack.empty()) {
                 tagStack.pop_back();
+            }
         }
         else
         {
@@ -50,7 +50,7 @@ int main()
             while (ss >> attrName >> equals >> attrValue)
             {
                 // Remove quotes from value
-                attrValue = attrValue.substr(1, attrValue.length() - 2);
+                attrValue = attrValue.substr(1, attrValue.length() - 3);
 
                 // Remove trailing '>' if present
                 if (attrValue.back() == '>')
@@ -68,7 +68,7 @@ int main()
         string query;
         cin >> query;
 
-        if (attributes.find(query) != attributes.end())
+        if (attributes.contains(query))
         {
             cout << attributes[query] << "\n";
         }
