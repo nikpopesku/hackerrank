@@ -6,7 +6,7 @@ int reversed_binary_value() {
     bool arr[] = {digits...};
     int result = 0;
     int power = 1;
-    for (int i = sizeof...(digits) - 1; i >= 0; --i) {
+    for (int i = 0; i < sizeof...(digits); ++i) {
         if (arr[i]) {
             result += power;
         }
