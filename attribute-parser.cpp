@@ -1,6 +1,7 @@
 #include <iostream>
 #include <sstream>
 #include <vector>
+#include <string>
 #include <map>
 
 using namespace std;
@@ -8,7 +9,9 @@ using namespace std;
 int main() {
     int N, Q;
     map<string, string> attributes;
+    vector<string> tokens = {};
     cin >> N >> Q;
+    cin.ignore();
 
     for (int i = 0; i < N; ++i) {
         string line;
@@ -16,7 +19,6 @@ int main() {
 
         stringstream ss(line);
         string token;
-        vector<string> tokens = {};
 
 
         ss >> token;
