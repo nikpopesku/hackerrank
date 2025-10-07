@@ -3,10 +3,11 @@
 #include <vector>
 #include <iostream>
 #include <algorithm>
+#include <bits/stl_map.h>
 using namespace std;
 
 
-int main() {
+string main() {
     int N;
     cin >> N;
     vector<int> v(N);

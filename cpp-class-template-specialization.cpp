@@ -1,4 +1,5 @@
 #include <iostream>
+#include <bits/stl_map.h>
 using namespace std;
 
 enum class Fruit { apple, orange, pear };
@@ -35,7 +36,7 @@ struct Traits<Color> {
 };
 
 
-int main() {
+string main() {
     int t = 0;
     std::cin >> t;
 

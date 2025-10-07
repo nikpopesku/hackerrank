@@ -1,18 +1,14 @@
 #include <iostream>
-#include <string>
-#include <map>
-#include <vector>
 #include <sstream>
+#include <vector>
+#include <map>
 
 using namespace std;
 
 int main() {
     int N, Q;
-    cin >> N >> Q;
-    cin.ignore();
-
     map<string, string> attributes;
-    vector<string> tagStack;
+    cin >> N >> Q;
 
     for (int i = 0; i < N; ++i) {
         string line;
@@ -20,53 +16,39 @@ int main() {
 
         stringstream ss(line);
         string token;
+        vector<string> tokens = {};
+
+
         ss >> token;
 
         if (token[1] == '/') {
-            if (!tagStack.empty()) {
-                tagStack.pop_back();
-            }
+            tokens.pop_back();
         } else {
-            // Opening tag
-            string tagName = token.substr(1); // Remove '<'
-
-            // Build current tag path
             string currentPath;
-            for (const auto &tag: tagStack) {
-                currentPath += tag + ".";
+
+            token = token.substr(1);
+
+            for (auto t: tokens) {
+                currentPath += t + ".";
             }
-            currentPath += tagName;
-            tagStack.push_back(tagName);
+            currentPath += token;
 
-            // Parse attributes
-            string attrName, equals, attrValue;
-            while (ss >> attrName >> equals >> attrValue) {
-                // Remove quotes from value
-                attrValue = attrValue.substr(1, attrValue.length() - 3);
+            string attrName, equal, value;
+            ss >> attrName >> equal >> value;
 
-                // Remove trailing '>' if present
-                if (attrValue.back() == '>') {
-                    attrValue.pop_back();
-                }
-
-
-                string key = currentPath + "~" + attrName;
-                attributes[key] = attrValue;
+            if (attrName.data()) {
+                attributes[currentPath + "~" + attrName] = value;
             }
         }
     }
 
-    // Answer queries
     for (int i = 0; i < Q; ++i) {
-        string query;
-        cin >> query;
-
-        if (attributes.contains(query)) {
-            cout << attributes[query] << "\n";
+        string value;
+        cin >> value;
+        if (attributes.contains(value)) {
+            cout << attributes[value] << "\n";
         } else {
             cout << "Not Found!\n";
         }
     }
-
-    return 0;
 }
