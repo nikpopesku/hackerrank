@@ -28,7 +28,7 @@ template<bool... digits>
 struct CheckValues<0, digits...> {
     static void check(const int x, const int y) {
         const int z = reversed_binary_value<digits...>();
-        std::cout << (z + 64 * y == x);
+        std::cout << (z + 64 * y == x ? 1 : 0);
     }
 };
 
@@ -43,13 +43,3 @@ int main() {
         cout << "\n";
     }
 }
-
-
-// Sample Input
-// 2
-// 65 1
-// 10 0
-//
-// Sample Output
-// 0100000000000000000000000000000000000000000000000000000000000000
-// 0000000000100000000000000000000000000000000000000000000000000000
