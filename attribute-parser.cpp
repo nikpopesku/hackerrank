@@ -38,10 +38,11 @@ int main() {
             tokens.push_back(currentPath);
 
             string attrName, equal, value;
-            ss >> attrName >> equal >> value;
 
-            if (attrName.data()) {
-                attributes[currentPath + "~" + attrName] = value.substr(1, value.size() - 3);
+            while (ss >> attrName >> equal >> value) {
+                if (attrName.data()) {
+                    attributes[currentPath + "~" + attrName] = value.substr(1, value.size() - 3);
+                }
             }
         }
     }
@@ -49,7 +50,7 @@ int main() {
     for (int i = 0; i < Q; ++i) {
         string value;
         cin >> value;
-        if (attributes.contains(value)) {
+        if (attributes.find(value) != attributes.end()) {
             cout << attributes[value] << "\n";
         } else {
             cout << "Not Found!\n";
