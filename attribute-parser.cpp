@@ -35,11 +35,13 @@ int main() {
             }
             currentPath += token;
 
+            tokens.push_back(currentPath);
+
             string attrName, equal, value;
             ss >> attrName >> equal >> value;
 
             if (attrName.data()) {
-                attributes[currentPath + "~" + attrName] = value;
+                attributes[currentPath + "~" + attrName] = value.substr(1, value.size() - 3);
             }
         }
     }
