@@ -26,7 +26,7 @@ public:
 
 protected:
     map<int, Node*> mp; //map the key to the node in the linked list
-    int cp = 0; //capacity
+    int cp; //capacity
     Node* tail = nullptr; // double linked list tail pointer
     Node* head = nullptr; // double linked list head pointer
     virtual void set(int, int) = 0; //set function
@@ -56,16 +56,25 @@ public:
         }
 
 
-        int counter = 1;
+        int counter = 2;
         Node* node = head->next;
         Node* previous = head;
 
         while (node)
         {
-            if (counter == cp)
+            if (counter >= cp)
             {
+                auto tmp = node->next;
                 node->next = nullptr;
                 tail = node;
+
+                while (tmp)
+                {
+                    mp.erase(tmp->key);
+                    tmp = tmp->next;
+                }
+
+                break;
             }
 
             if (node->key == key)
