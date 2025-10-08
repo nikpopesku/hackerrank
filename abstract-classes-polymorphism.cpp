@@ -10,7 +10,7 @@ struct Node
     int value;
     int key;
 
-    Node(Node* p, Node* n, const int k, const int val) : prev(p), next(n), key(k), value(val)
+    Node(Node* p, Node* n, const int k, const int val) : next(n), prev(p), value(val), key(k)
     {
     };
 
@@ -37,9 +37,9 @@ public:
     {
     }
 
-    void set(const int key, int value) override
+    void set(const int key, const int value) override
     {
-        mp[key] = new Node(value);
+        mp[key] = new Node(key, value);
     }
 
     int get(const int key) override
