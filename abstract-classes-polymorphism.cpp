@@ -44,6 +44,39 @@ public:
     void set(const int key, const int value) override
     {
         mp[key] = new Node(key, value);
+        mp[key]->next = head;
+        head = mp[key]->next;
+
+
+        if (tail == nullptr)
+        {
+            tail = mp[key];
+        }
+
+
+        Node* node = head->next;
+        Node* previous = head;
+
+        while (node)
+        {
+            if (node->key == key)
+            {
+                if (previous != nullptr)
+                {
+                    previous->next = node->next;
+                }
+
+                if (node->next)
+                {
+                    node->next->prev = previous;
+                }
+
+                break;
+            }
+
+            previous = node;
+            node = node->next;
+        }
     }
 
     int get(const int key) override
@@ -56,6 +89,9 @@ public:
         return -1;
     }
 };
+
+Cache::tail=
+nullptr;
 
 int main()
 {
