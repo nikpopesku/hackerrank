@@ -21,6 +21,9 @@ struct Node
 
 class Cache
 {
+public:
+    virtual ~Cache() = default;
+
 protected:
     map<int, Node*> mp; //map the key to the node in the linked list
     int cp; //capacity
@@ -34,7 +37,7 @@ protected:
     };
 };
 
-class LRUCache : public Cache
+class LRUCache final : public Cache
 {
 public:
     explicit LRUCache(const int capacity) : Cache(capacity)
