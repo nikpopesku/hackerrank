@@ -27,11 +27,20 @@ class Cache
 {
 protected:
     map<int, Node*> mp; //map the key to the node in the linked list
-    int cp; //capacity
+    int cp = 0; //capacity
     Node* tail; // double linked list tail pointer
     Node* head; // double linked list head pointer
     virtual void set(int, int) = 0; //set function
     virtual int get(int) = 0; //get function
+};
+
+class LRUCache: public Cache
+{
+public:
+    explicit LRUCache(int capacity): cp(capacity)
+    {
+
+    }
 };
 
 int main()
