@@ -48,7 +48,7 @@ public:
     {
         mp[key] = new Node(key, value);
         mp[key]->next = head;
-        head = mp[key]->next;
+        head = mp[key];
 
 
         if (tail == nullptr)
