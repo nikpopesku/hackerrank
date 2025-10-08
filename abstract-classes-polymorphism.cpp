@@ -90,9 +90,6 @@ public:
     }
 };
 
-Cache::tail=
-nullptr;
-
 int main()
 {
     int n, capacity;
