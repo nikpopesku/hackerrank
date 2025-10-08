@@ -79,6 +79,10 @@ public:
                 {
                     node->next->prev = previous;
                 }
+                else
+                {
+                    tail = node;
+                }
 
                 break;
             }
