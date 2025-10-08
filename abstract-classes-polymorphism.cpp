@@ -46,14 +46,13 @@ public:
 
     void set(const int key, const int value) override
     {
-        mp[key] = new Node(key, value);
-        mp[key]->next = head;
+        mp[key] = new Node(nullptr, head, key, value);
         head = mp[key];
 
 
         if (tail == nullptr)
         {
-            tail = mp[key];
+            tail = head;
         }
 
 
