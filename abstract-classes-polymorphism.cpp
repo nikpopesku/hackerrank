@@ -1,10 +1,6 @@
 #include <iostream>
-#include <vector>
 #include <map>
 #include <string>
-#include <algorithm>
-#include <set>
-#include <cassert>
 using namespace std;
 
 struct Node
@@ -14,11 +10,11 @@ struct Node
     int value;
     int key;
 
-    Node(Node* p, Node* n, int k, int val) : prev(p), next(n), key(k), value(val)
+    Node(Node* p, Node* n, const int k, const int val) : prev(p), next(n), key(k), value(val)
     {
     };
 
-    Node(int k, int val) : prev(NULL), next(NULL), key(k), value(val)
+    Node(const int k, const int val) : next(nullptr), prev(nullptr), value(val), key(k)
     {
     };
 };
@@ -34,21 +30,35 @@ protected:
     virtual int get(int) = 0; //get function
 };
 
-class LRUCache: public Cache
+class LRUCache : public Cache
 {
 public:
-    explicit LRUCache(int capacity): cp(capacity)
+    explicit LRUCache(int capacity) : cp(capacity)
     {
+    }
 
+    void set(const int key, int value) override
+    {
+        mp[key] = new Node(value);
+    }
+
+    int get(const int key) override
+    {
+        if (mp.find(key) != mp.end())
+        {
+            return mp[key];
+        }
+
+        return -1;
     }
 };
 
 int main()
 {
-    int n, capacity, i;
+    int n, capacity;
     cin >> n >> capacity;
     LRUCache l(capacity);
-    for (i = 0; i < n; i++)
+    for (int i = 0; i < n; i++)
     {
         string command;
         cin >> command;
