@@ -24,8 +24,8 @@ class Cache
 protected:
     map<int, Node*> mp; //map the key to the node in the linked list
     int cp = 0; //capacity
-    Node* tail; // double linked list tail pointer
-    Node* head; // double linked list head pointer
+    Node* tail = nullptr; // double linked list tail pointer
+    Node* head = nullptr; // double linked list head pointer
     virtual void set(int, int) = 0; //set function
     virtual int get(int) = 0; //get function
 };
@@ -46,7 +46,7 @@ public:
     {
         if (mp.find(key) != mp.end())
         {
-            return mp[key];
+            return mp[key]->value;
         }
 
         return -1;
