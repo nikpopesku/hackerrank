@@ -100,7 +100,25 @@ string SpellJournal::journal = "";
 
 void counterspell(Spell* spell)
 {
-    /* Enter your code here. Read input from STDIN. Print output to STDOUT */
+    if (const auto waterSpell = dynamic_cast<Waterbolt*>(spell))
+    {
+        waterSpell->revealScrollName();
+    }
+    else if (const auto fireSpell = dynamic_cast<Fireball*>(spell))
+    {
+        fireSpell->revealScrollName();
+    }
+    else if (const auto thunderSpell = dynamic_cast<Thunderstorm*>(spell))
+    {
+        thunderSpell->revealThunderpower();
+    }
+    else if (const auto frostSpell = dynamic_cast<Frostbite*>(spell))
+    {
+        frostSpell->revealScrollName();
+    }
+    else
+    {
+    }
 }
 
 class Wizard
