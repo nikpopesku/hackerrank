@@ -99,7 +99,7 @@ string SpellJournal::journal;
 
 int longestCommonSubsequence(const string& text1, const string& text2)
 {
-    vector dp(text1.size() + 1, vector<unsigned long long>(text2.size() + 1, 0));
+    vector dp(text1.size() + 1, vector(text2.size() + 1, 0));
     dp[0][0] = 0;
 
     for (auto i = 1; i <= text1.size(); i++)
