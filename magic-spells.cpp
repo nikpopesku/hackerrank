@@ -1,5 +1,7 @@
 #include <iostream>
 #include <string>
+#include <utility>
+
 using namespace std;
 
 class Spell
@@ -7,17 +9,13 @@ class Spell
     string scrollName;
 
 public:
-    Spell() : scrollName("")
+    Spell() = default;
+
+    explicit Spell(string name) : scrollName(std::move(name))
     {
     }
 
-    explicit Spell(const string& name) : scrollName(name)
-    {
-    }
-
-    virtual ~Spell()
-    {
-    }
+    virtual ~Spell() = default;
 
     string revealScrollName()
     {
@@ -113,21 +111,21 @@ int nextOccurrence(string s, int i, char c)
 
 void counterspell(Spell* spell)
 {
-    if (const auto waterSpell = dynamic_cast<Waterbolt*>(spell))
+    if (auto* waterSpell = dynamic_cast<Waterbolt*>(spell); waterSpell != nullptr)
     {
-        waterSpell->revealScrollName();
+        waterSpell->revealWaterpower();
     }
-    else if (const auto fireSpell = dynamic_cast<Fireball*>(spell))
+    else if (auto* fireSpell = dynamic_cast<Fireball*>(spell); fireSpell != nullptr)
     {
-        fireSpell->revealScrollName();
+        fireSpell->revealFirepower();
     }
-    else if (const auto thunderSpell = dynamic_cast<Thunderstorm*>(spell))
+    else if (auto* thunderSpell = dynamic_cast<Thunderstorm*>(spell); thunderSpell != nullptr)
     {
         thunderSpell->revealThunderpower();
     }
-    else if (const auto frostSpell = dynamic_cast<Frostbite*>(spell))
+    else if (auto* frostSpell = dynamic_cast<Frostbite*>(spell); frostSpell != nullptr)
     {
-        frostSpell->revealScrollName();
+        frostSpell->revealFrostpower();
     }
     else
     {
@@ -147,8 +145,8 @@ void counterspell(Spell* spell)
                 continue;
             }
 
-            int n1 = nextOccurrence(s1, counter1, s2[counter2]);
-            int n2 = nextOccurrence(s2, counter2, s1[counter1]);
+            const int n1 = nextOccurrence(s1, counter1, s2[counter2]);
+            const int n2 = nextOccurrence(s2, counter2, s1[counter1]);
 
             if (n1 == -1)
             {
