@@ -101,9 +101,9 @@ int longestCommonSubsequence(const string& text1, const string& text2)
 {
     vector dp(text1.size() + 1, vector(text2.size() + 1, 0));
 
-    for (auto i = 1; i <= text1.size(); i++)
+    for (int i = 1; i <= text1.size(); ++i)
     {
-        for (auto j = 1; j <= text2.size(); j++)
+        for (int j = 1; j <= text2.size(); ++j)
         {
             if (text1[i - 1] == text2[j - 1])
             {
