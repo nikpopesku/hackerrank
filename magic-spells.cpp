@@ -218,6 +218,7 @@ int main()
     {
         Spell* spell = Arawn.cast();
         counterspell(spell);
+        delete spell;
     }
     return 0;
 }
