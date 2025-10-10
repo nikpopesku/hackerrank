@@ -13,7 +13,7 @@ public:
     {
     }
 
-    Spell(string name) : scrollName(name)
+    explicit Spell(const string& name) : scrollName(name)
     {
     }
 
@@ -27,45 +27,42 @@ public:
     }
 };
 
-class Fireball : public Spell
+class Fireball final : public Spell
 {
-private:
     int power;
 
 public:
-    Fireball(int power) : power(power)
+    explicit Fireball(const int power) : power(power)
     {
     }
 
-    void revealFirepower()
+    void revealFirepower() const
     {
         cout << "Fireball: " << power << endl;
     }
 };
 
-class Frostbite : public Spell
+class Frostbite final : public Spell
 {
-private:
     int power;
 
 public:
-    Frostbite(int power) : power(power)
+    explicit Frostbite(const int power) : power(power)
     {
     }
 
-    void revealFrostpower()
+    void revealFrostpower() const
     {
         cout << "Frostbite: " << power << endl;
     }
 };
 
-class Thunderstorm : public Spell
+class Thunderstorm final : public Spell
 {
-private:
     int power;
 
 public:
-    Thunderstorm(const int power) : power(power)
+    explicit Thunderstorm(const int power) : power(power)
     {
     }
 
@@ -77,11 +74,10 @@ public:
 
 class Waterbolt : public Spell
 {
-private:
     int power;
 
 public:
-    Waterbolt(int power) : power(power)
+    explicit Waterbolt(const int power) : power(power)
     {
     }
 
