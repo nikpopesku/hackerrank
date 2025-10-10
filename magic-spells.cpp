@@ -94,9 +94,9 @@ public:
     }
 };
 
-string SpellJournal::journal = "";
+string SpellJournal::journal;
 
-int nextOccurrence(string s, int i, char c)
+int nextOccurrence(const string& s, const int i, const char c)
 {
     for (int j = i; j < s.size(); ++j)
     {
@@ -111,19 +111,19 @@ int nextOccurrence(string s, int i, char c)
 
 void counterspell(Spell* spell)
 {
-    if (auto* waterSpell = dynamic_cast<Waterbolt*>(spell); waterSpell != nullptr)
+    if (const auto* waterSpell = dynamic_cast<Waterbolt*>(spell); waterSpell != nullptr)
     {
         waterSpell->revealWaterpower();
     }
-    else if (auto* fireSpell = dynamic_cast<Fireball*>(spell); fireSpell != nullptr)
+    else if (const auto* fireSpell = dynamic_cast<Fireball*>(spell); fireSpell != nullptr)
     {
         fireSpell->revealFirepower();
     }
-    else if (auto* thunderSpell = dynamic_cast<Thunderstorm*>(spell); thunderSpell != nullptr)
+    else if (const auto* thunderSpell = dynamic_cast<Thunderstorm*>(spell); thunderSpell != nullptr)
     {
         thunderSpell->revealThunderpower();
     }
-    else if (auto* frostSpell = dynamic_cast<Frostbite*>(spell); frostSpell != nullptr)
+    else if (const auto* frostSpell = dynamic_cast<Frostbite*>(spell); frostSpell != nullptr)
     {
         frostSpell->revealFrostpower();
     }
