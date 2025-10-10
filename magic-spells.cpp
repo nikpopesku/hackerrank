@@ -98,6 +98,19 @@ public:
 
 string SpellJournal::journal = "";
 
+int nextOccurrence(string s, int i, char c)
+{
+    for (int j = i; j < s.size(); ++j)
+    {
+        if (s[j] == c)
+        {
+            return j - i;
+        }
+    }
+
+    return -1;
+}
+
 void counterspell(Spell* spell)
 {
     if (const auto waterSpell = dynamic_cast<Waterbolt*>(spell))
@@ -118,6 +131,48 @@ void counterspell(Spell* spell)
     }
     else
     {
+        const string s1 = SpellJournal::read();
+        const string s2 = spell->revealScrollName();
+        int counter1 = 0, counter2 = 0;
+        string common;
+
+        while (counter1 < s1.size() && counter2 < s2.size())
+        {
+            if (s1[counter1] == s2[counter2])
+            {
+                common += s1[counter1];
+                ++counter1;
+                ++counter2;
+
+                continue;
+            }
+
+            int n1 = nextOccurrence(s1, counter1, s2[counter2]);
+            int n2 = nextOccurrence(s2, counter2, s1[counter1]);
+
+            if (n1 == -1)
+            {
+                ++counter2;
+                continue;
+            }
+
+            if (n2 == -1)
+            {
+                ++counter1;
+                continue;
+            }
+
+            if (n1 < n2)
+            {
+                counter1 += n1;
+            }
+            else
+            {
+                counter2 += n2;
+            }
+        }
+
+        cout << common.size() << "\n";
     }
 }
 
