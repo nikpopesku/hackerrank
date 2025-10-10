@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include <utility>
+#include <vector>
 
 using namespace std;
 
@@ -96,17 +97,27 @@ public:
 
 string SpellJournal::journal;
 
-int nextOccurrence(const string& s, const int i, const char c)
+int longestCommonSubsequence(const string& text1, const string& text2)
 {
-    for (int j = i; j < s.size(); ++j)
+    vector dp(text1.size() + 1, vector<unsigned long long>(text2.size() + 1, 0));
+    dp[0][0] = 0;
+
+    for (auto i = 1; i <= text1.size(); i++)
     {
-        if (s[j] == c)
+        for (auto j = 1; j <= text2.size(); j++)
         {
-            return j - i;
+            if (text1[i - 1] == text2[j - 1])
+            {
+                dp[i][j] = dp[i - 1][j - 1] + 1;
+            }
+            else
+            {
+                dp[i][j] = max(dp[i - 1][j], dp[i][j - 1]);
+            }
         }
     }
 
-    return -1;
+    return dp[text1.size()][text2.size()];
 }
 
 void counterspell(Spell* spell)
@@ -131,46 +142,7 @@ void counterspell(Spell* spell)
     {
         const string s1 = SpellJournal::read();
         const string s2 = spell->revealScrollName();
-        int counter1 = 0, counter2 = 0;
-        string common;
-
-        while (counter1 < s1.size() && counter2 < s2.size())
-        {
-            if (s1[counter1] == s2[counter2])
-            {
-                common += s1[counter1];
-                ++counter1;
-                ++counter2;
-
-                continue;
-            }
-
-            const int n1 = nextOccurrence(s1, counter1, s2[counter2]);
-            const int n2 = nextOccurrence(s2, counter2, s1[counter1]);
-
-            if (n1 == -1)
-            {
-                ++counter2;
-                continue;
-            }
-
-            if (n2 == -1)
-            {
-                ++counter1;
-                continue;
-            }
-
-            if (n1 < n2)
-            {
-                counter1 += n1;
-            }
-            else
-            {
-                counter2 += n2;
-            }
-        }
-
-        cout << common.size() << "\n";
+        cout << longestCommonSubsequence(s1, s2) << "\n";
     }
 }
 
