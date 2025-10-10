@@ -1,11 +1,9 @@
 #include <iostream>
-#include <vector>
 #include <string>
 using namespace std;
 
 class Spell
 {
-private:
     string scrollName;
 
 public:
