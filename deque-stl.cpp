@@ -10,29 +10,29 @@ void printKMax(int arr[], const int n, const int k)
 
     for (int i = 0; i < k; ++i)
     {
-        while (!dq.empty() && arr[i] > arr[dq.back()])
+        while (!dq.empty() && arr[i] >= arr[dq.back()])
         {
             dq.pop_back();
         }
 
-        dq.push_back(arr[i]);
+        dq.push_back(i);
     }
 
     for (int i = k; i < n; ++i)
     {
-        cout << dq.front() << " ";
+        cout << arr[dq.front()] << " ";
 
-        while (!dq.empty() && dq.front() < i - k)
+        while (!dq.empty() && dq.front() <= i - k)
         {
             dq.pop_front();
         }
 
-        while (!dq.empty() && arr[i] > arr[dq.back()])
+        while (!dq.empty() && arr[i] >= arr[dq.back()])
         {
             dq.pop_back();
         }
 
-        dq.push_back(arr[i]);
+        dq.push_back(i);
     }
 
     cout << arr[dq.front()] << "\n";
