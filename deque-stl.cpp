@@ -6,41 +6,35 @@ using namespace std;
 
 void printKMax(int arr[], const int n, const int k)
 {
-    deque<int> dq; // stores indices, not values
+    deque<int> dq;
 
-    // Process first k elements
     for (int i = 0; i < k; ++i)
     {
-        // Remove elements from back while current element is greater
-        while (!dq.empty() && arr[i] >= arr[dq.back()])
+        while (!dq.empty() && arr[i] > arr[dq.back()])
         {
             dq.pop_back();
         }
-        dq.push_back(i);
+
+        dq.push_back(arr[i]);
     }
 
-    // Process remaining elements
     for (int i = k; i < n; ++i)
     {
-        // The front element is the maximum of previous window
-        cout << arr[dq.front()] << " ";
+        cout << dq.front() << " ";
 
-        // Remove elements outside current window
-        while (!dq.empty() && dq.front() <= i - k)
+        while (!dq.empty() && dq.front() < i - k)
         {
             dq.pop_front();
         }
 
-        // Remove elements smaller than current element
-        while (!dq.empty() && arr[i] >= arr[dq.back()])
+        while (!dq.empty() && arr[i] > arr[dq.back()])
         {
             dq.pop_back();
         }
 
-        dq.push_back(i);
+        dq.push_back(arr[i]);
     }
 
-    // Print maximum of last window
     cout << arr[dq.front()] << "\n";
 }
 
