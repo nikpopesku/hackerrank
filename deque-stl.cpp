@@ -1,6 +1,7 @@
 #include <algorithm>
 #include <iostream>
 #include <deque>
+
 using namespace std;
 
 void printKMax(int arr[], const int n, const int k)
@@ -9,19 +10,19 @@ void printKMax(int arr[], const int n, const int k)
 
     for (int i = 0; i < n; ++i)
     {
-        if (dq.size() >= k)
+        if (dq.size() >= static_cast<size_t>(k))
         {
             dq.pop_front();
         }
 
-        if (dq.size() < k)
+        if (dq.size() < static_cast<size_t>(k))
         {
             dq.push_back(arr[i]);
         }
 
         if (i >= k - 1)
         {
-            auto max_it_vector = ranges::max_element(dq);
+            auto max_it_vector = max_element(dq.begin(), dq.end());
             cout << *max_it_vector << " ";
         }
     }
