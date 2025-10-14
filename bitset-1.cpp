@@ -1,5 +1,6 @@
 #include <bitset>
 #include <iostream>
+#include <memory>
 using namespace std;
 
 #define ull unsigned long long
@@ -18,7 +19,7 @@ int main()
 
     for (ull i = 1; i < N; ++i)
     {
-        last = (last * P + Q) % val;
+        last = (last % val) * (P % val) % val + Q % val;
 
         if (seen[last])
         {
