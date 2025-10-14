@@ -2,21 +2,21 @@
 #include <iostream>
 using namespace std;
 
-#define ll long long
+#define ull unsigned long long
 
 int main()
 {
-    ll N, S, P, Q;
-    constexpr ll val = 2 << 31;
-    set<ll> s;
+    ull N, S, P, Q;
+    constexpr ull val = 1 << 31;
+    set<ull> s;
 
 
     cin >> N >> S >> P >> Q;
 
-    ll last = S % val;
+    ull last = S % val;
     s.insert(last);
 
-    for (ll i = 1; i < N; ++i)
+    for (ull i = 1; i < N; ++i)
     {
         last = last * P + Q % val;
         s.insert(last);
