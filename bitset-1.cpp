@@ -1,5 +1,5 @@
-#include <set>
 #include <iostream>
+#include <bitset>
 using namespace std;
 
 #define ull unsigned long long
@@ -7,20 +7,28 @@ using namespace std;
 int main()
 {
     ull N, S, P, Q;
-    constexpr ull val = 1 << 31;
-    set<ull> s;
-
+    constexpr ull val = 1ULL << 31;
 
     cin >> N >> S >> P >> Q;
 
     ull last = S % val;
-    s.insert(last);
+    bitset<(1ULL << 31)> seen;
+
+    seen[last] = true;
+    ull count = 1;
 
     for (ull i = 1; i < N; ++i)
     {
-        last = last * P + Q % val;
-        s.insert(last);
+        last = (last * P + Q) % val;
+
+        if (seen[last])
+        {
+            break;
+        }
+
+        seen[last] = true;
+        ++count;
     }
 
-    cout << s.size() << "\n";
+    cout << count << "\n";
 }
