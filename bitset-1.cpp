@@ -1,4 +1,4 @@
-#include <set>
+#include <bitset>
 #include <iostream>
 using namespace std;
 
@@ -7,20 +7,27 @@ using namespace std;
 int main()
 {
     ull N, S, P, Q;
-    constexpr ull val = 1 << 31;
-    set<ull> s;
+    constexpr ull val = 1 << 10;
+    bitset<(val)> seen;
+    ull counter = 1;
 
 
     cin >> N >> S >> P >> Q;
 
     ull last = S % val;
-    s.insert(last);
 
     for (ull i = 1; i < N; ++i)
     {
         last = (last * P + Q) % val;
-        s.insert(last);
+
+        if (seen[last])
+        {
+            break;
+        }
+
+        ++counter;
+        seen[last] = true;
     }
 
-    cout << s.size() << "\n";
+    cout << counter << "\n";
 }
