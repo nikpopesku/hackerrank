@@ -7,7 +7,7 @@ using namespace std;
 int main()
 {
     ull N, S, P, Q;
-    constexpr ull val = 1 << 10;
+    constexpr ull val = 1 << 25;
     bitset<(val)> seen;
     ull counter = 1;
 
